@@ -24,5 +24,8 @@ def test():
 def make_shell_context():
     return dict(app = app,db = db,user = user,pin=pin,chat=chat)
 
+# if __name__ == '__main__':
+#     manager.run()
+
 if __name__ == '__main__':
-    manager.run()
+    app.run()    
