@@ -4,10 +4,12 @@ from ..models import user
 from .. import db, photos
 from flask_login import login_required
 from ..models import user,chat,pin
+from .forms import ContactForm
 
 
 @main.route('/')
 def index():
-  '''
-  CODE
-  '''
+
+    form = ContactForm()
+
+    return render_template('new-contact.html', contact_form=form)

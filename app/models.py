@@ -6,8 +6,8 @@ from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
-  return user.query.get(int(user_id))
-  
+   return user.query.get(int(user_id))
+
 
 class user(db.Model,UserMixin):
    __tablename__ = 'user'
@@ -17,7 +17,7 @@ class user(db.Model,UserMixin):
    username = db.Column(db.String(255))
 
    def __repr__(self):
-     return f'(self.contact)'
+      return f'(self.contact)'
 
 class chat(db.Model):
    __tablename__ = 'chat'
@@ -35,3 +35,9 @@ class pin(db.Model):
    user_pin = db.Column(db.ForeignKey('user.id'))
    chat_pin = db.Column(db.Integer)
    
+class contacts(db.Model):
+
+   id = db.Column(db.Integer,primary_key=True)
+   saved_by = db.Column(db.ForeignKey('current_user.id'))
+   username = db.Column(db.String(255))
+   contact = db.Column(db.String(100))

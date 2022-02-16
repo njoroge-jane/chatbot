@@ -57,7 +57,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV '/home/moringa/Documents/moringa-projects/Chat-App/virtual'
+set -gx VIRTUAL_ENV '/home/moringa/Desktop/chatbot/virtual'
 
 # https://github.com/fish-shell/fish-shell/issues/436 altered PATH handling
 if test (echo $FISH_VERSION | head -c 1) -lt 3

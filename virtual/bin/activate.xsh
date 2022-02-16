@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/home/moringa/Documents/moringa-projects/Chat-App/virtual"
+$VIRTUAL_ENV = r"/home/moringa/Desktop/chatbot/virtual"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]
