@@ -9,14 +9,22 @@ from flask_login import current_user, login_user, logout_user, login_required
 @auth.route('/register', methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
-    if form.validate_on_submit():
-        user = users(username=form.username.data, contact=form.contact.data)
-        db.session.add(user)
-        db.session.commit()
+    get_user = users.query.filter_by(contact=form.contact.data).first()
+    if get_user:
+        flash("User already exists")
 
-        return redirect(url_for('auth.login'))
+    else:
 
-    flash('Account has been created successfully')
+        if form.validate_on_submit():
+            user = users(username=form.username.data,
+                         contact=form.contact.data)
+            db.session.add(user)
+            db.session.commit()
+
+            flash('Account has been created successfully')
+
+            return redirect(url_for('auth.login'))
+
     return render_template('auth/register.html', registration_form=form)
 
 
@@ -24,9 +32,11 @@ def register():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        user = users.query.filter_by(username=login_form.users.data).first()
-        if user.contact == login_form.contact.data:
-            return redirect(url_for('/home'))
-
+        user = users.query.filter_by(username=login_form.username.data).first()
+        if (user.username == login_form.username.data):
+            login_user(user, remember=login_form.remember.data)
+            return redirect(url_for('main.home'))
+        else:
+            flash('Invalid login details')
     title = "ChatBot login"
     return render_template('auth/login.html', login_form=login_form, title=title)
