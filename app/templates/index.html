@@ -1,1 +1,44 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block body %}
+<div class="navbars">
+    <div class="logo"><h3>ChatBot</h3></div>
+    <div class="menubars"><i class="fa-solid fa-circle-xmark" onclick="closetab()" id="close"></i><i class="fa-solid fa-bars" onclick="opentab()" id="open"></i><div class="userlater"><span>R</span></div></div>
+    <div class="menuitems" id="menuitems">
+        <ul>
+            <li><a href="/pin">Set Pin</a></li>
+            <li id="specials"><a href="/contact">Add Contact</a></li>
+        </ul>
+    </div>
+</div>
+<div class="chartbody">
+    <div class="contacts">
+        <h3 id="contlist">Contact List</h3>
+        <div class="add"><div class="span"><i class="fa-solid fa-plus"></i></div></div>
+        <div class="some_contacts">
+            
+        </div>
+    </div>
+    <div class="chart_content">
+        <div class="usernavbar"><h4>username</h4></div>
+        <div class="chart_contents"></div>
+        <div class="chartform">
+            <form action="/sendchart" method="post">
+              <input type="text" name="messages" oninput="validate()" autocomplete="off" id="messages" placeholder="Type your message here">
+              <button id="sendmessages" onclick="return validateSend()"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="recentcharts">
+        <h3>Recent Charts</h3>
+        <div class="some_chats">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

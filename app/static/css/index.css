@@ -1,0 +1,180 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    max-height: 400px;
+    overflow: hidden;
+    color: #0E6C72;
+}
+.navbars{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin:-8px -8px -10px -8px;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 2px solid #0E6C72;
+}
+.chart_content{
+    width: 40%;
+}
+.contacts, .recentcharts{
+    width: 30%;
+}
+.contacts h3, .recentcharts h3{
+    text-align: center;
+}
+.contacts{
+    border-right: 1px solid gainsboro;
+}
+.recentcharts{
+    border-left: 1px solid gainsboro;
+}
+.chartbody{
+    display: flex;
+}
+.contacts .add{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    cursor: pointer;
+}
+.contacts .add .span{
+    padding-top: 10px;
+}
+.chart_content{
+    background-color: #fbf9fd;
+    padding: 10px;
+}
+.chart_contents{
+    height: 300px;
+    margin-bottom: 10px;
+}
+#messages{
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
+    outline: gainsboro;
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 25px;
+    border: 1px solid #B7C6E0;
+}
+form{
+    position: relative;
+}
+form button{
+    height: 49px;
+    width: 49px;
+    border:none;
+    border-radius: 50%;
+    position: absolute;
+    right: 1px;
+    font-size: 24px;
+    background-color: inherit;
+    cursor: pointer;
+}
+.contacts{
+    margin-right: 10PX;
+}
+.recentcharts{
+    margin-left: 10PX;
+}
+.contacts,.recentcharts{
+    border-bottom: 3px solid #8181CF;
+}
+.menubars{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    font-size: 20px;
+}
+.userlater{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #8181CF;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+.userlater span{
+    margin-top: 8px;
+}
+.usernavbar{
+    border-bottom: 1px solid #0E6C72;
+    margin-top: -30px;
+    margin-left: -10px;
+    margin-right: -10px;
+    height: 40px;
+    text-align: center;
+}
+.usernavbar h4{
+    padding: 10px;
+}
+.chartbody{
+    margin-top: 10px;
+}
+.menuitems{
+    width: 200px;
+    height: 130px;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    display: none;
+}
+#close{
+    display: none;
+    cursor: pointer;
+}
+#specials{
+    display: none;
+}
+ul li{
+    list-style: none;
+}
+.menuitems{
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 3px gainsboro;
+}
+ul li a{
+    color: #0E6C72;
+    text-decoration: none;
+    font-size: 19px;
+}
+@media screen and (max-width:600px){
+    .recentcharts{
+        display: none;
+    }
+    .chart_content{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 300px) {
+    .contacts #contlist{
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .some_contacts{
+        display: none;
+    }
+}
+@media screen and (max-width: 250px) {
+    .contacts{
+        display: none;
+    }
+    .chart_content{
+        width: 100%;
+    }
+    .logo{
+        display: none;
+    }
+    #specials{
+        display: block;
+    }
+}
