@@ -1,4 +1,48 @@
-{% extends 'bootstrap/base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-144351462-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-144351462-1");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Piches</title>
+    {% block styles %}
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/styles.css')}}"
+    />
+    {% endblock %}
+  </head>
 
-<!-- Navbar block  -->
-{% block navbar %} {% include 'navbar.html' %} {% endblock %}
+  <body class="body" style="background-image: url('./images/gotthis.jpeg')">
+    {% block navbar %} {% include "navbar.html" %} {% endblock %} {% block
+    content %} {% endblock %} {% block scripts %}
+
+    <!-- MDB -->
+
+    {% endblock %}
+  </body>
+</html>
