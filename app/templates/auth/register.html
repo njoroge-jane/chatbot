@@ -4,14 +4,12 @@ content%} {{ super() }}
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      {% for message in get_flashed_messages() %}
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert"></button>
-        {{ message }}
         <h4 class="text-center mt-3 text-primary">Create Account</h4>
         {{wtf.quick_form(registration_form)}}
-      </div>
-      {% endfor %}
+        <br>
+       <p>Already have account? <a class="login" href="{{ url_for('auth.login') }}">Login</a> here</p>
+
+      </div> 
     </div>
   </div>
 </div>
