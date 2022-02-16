@@ -3,3 +3,8 @@ from . import main
 from .. import db, photos
 from flask_login import login_required
 from ..models import users, chat, pin
+
+
+@main.route('/')
+def home():
+    return render_template('home.html')

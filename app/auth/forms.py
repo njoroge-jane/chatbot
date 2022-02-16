@@ -12,7 +12,19 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Enter username', validators=[InputRequired(), Email()])
+    username = StringField('Enter username', validators=[InputRequired()])
     contact = StringField('Enter contact', validators=[InputRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+
+def validate_username(self, username):
+    user = users.query.filter_by(username=username.data).first()
+    if user:
+        raise ValidationError('Username already exists')
+
+
+def validate_username(self, contact):
+    user = users.query.filter_by(contact=contact.data).first()
+    if user:
+        raise ValidationError('That contact exists')

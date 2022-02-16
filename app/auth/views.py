@@ -13,7 +13,10 @@ def register():
         user = users(username=form.username.data, contact=form.contact.data)
         db.session.add(user)
         db.session.commit()
+
         return redirect(url_for('auth.login'))
+
+    flash('Account has been created successfully')
     return render_template('auth/register.html', registration_form=form)
 
 
@@ -22,8 +25,8 @@ def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = users.query.filter_by(username=login_form.users.data).first()
-        if users.contact == login_form.contact.data:
-            return redirect(url_for('auth/register'))
+        if user.contact == login_form.contact.data:
+            return redirect(url_for('/home'))
 
     title = "ChatBot login"
     return render_template('auth/login.html', login_form=login_form, title=title)
