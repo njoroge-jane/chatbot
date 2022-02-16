@@ -53,6 +53,7 @@ body{
 }
 .chart_contents{
     height: 300px;
+    overflow-y: auto;
     margin-bottom: 10px;
 }
 #messages{
@@ -146,6 +147,51 @@ ul li a{
     color: #0E6C72;
     text-decoration: none;
     font-size: 19px;
+}
+.sender{
+    background-color: #b4ecf0;
+    padding: 9px;
+    width: fit-content;
+    border-radius: 10px;
+    float: right;
+}
+.eachchart{
+    min-height: 50px;
+    height: fit-content;
+    width: 100%;
+    margin-top: 10px;
+}
+.receiver{
+    background-color: #bdbdf1;
+    padding: 9px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-top: 10px;
+}
+.contac_block{
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    margin-top: 10px;
+}
+.roundimage{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #8181CF;
+    color: #FFFFFF;
+    text-align: center;
+    align-items: center;
+}
+.roundimage .icons{
+    padding-top: 10px;
+}
+.some_contacts a{
+    text-decoration: none;
+    color: #0E6C72;
+}
+.userpref{
+    padding-top: 3px;
 }
 @media screen and (max-width:600px){
     .recentcharts{

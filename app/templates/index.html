@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 
 
 {% block title %}
@@ -8,7 +8,7 @@
 {% block body %}
 <div class="navbars">
     <div class="logo"><h3>ChatBot</h3></div>
-    <div class="menubars"><i class="fa-solid fa-circle-xmark" onclick="closetab()" id="close"></i><i class="fa-solid fa-bars" onclick="opentab()" id="open"></i><div class="userlater"><span>R</span></div></div>
+    <div class="menubars"><i class="fa-solid fa-circle-xmark" onclick="closetab()" id="close"></i><i class="fa-solid fa-bars" onclick="opentab()" id="open"></i><div class="userlater"><div class="userpref">{{ mainuserpref }}</div></div></div>
     <div class="menuitems" id="menuitems">
         <ul>
             <li><a href="/pin">Set Pin</a></li>
@@ -19,14 +19,42 @@
 <div class="chartbody">
     <div class="contacts">
         <h3 id="contlist">Contact List</h3>
-        <div class="add"><div class="span"><i class="fa-solid fa-plus"></i></div></div>
+        <div class="add"><a href="/contact"><div class="span"><i class="fa-solid fa-plus"></i></div></a></div>
         <div class="some_contacts">
-            
+            {% for contact in get_contact %}
+               <a href="/recepient/{{ contact.id }}">
+                    <div class="contac_block">
+                        <div class="roundimage"><div class="icons">{{ contact.username[0] }}</div></div>
+                        <div class="details">
+                        <div class="names">Name: {{ contact.username }}</div>
+                        <div class="number">Phone: {{ contact.contact }}</div>
+                        </div>
+                    </div>
+               </a>
+            {% endfor %}
         </div>
     </div>
     <div class="chart_content">
-        <div class="usernavbar"><h4>username</h4></div>
-        <div class="chart_contents"></div>
+        <div class="usernavbar"><h4>{{ set_receiver.username }}</h4></div>
+        <div class="chart_contents">
+            {% for charts in get_charts %}
+               {% if charts.message_from == froms %}
+               <div class="eachchart">
+                    <div class="sender">
+                        <div class="texts">{{ charts.message }}</div>
+                        <div class="charttime">{{charts.received_on.strftime('%d,%b,%Y %H:%M')}}</div>
+                    </div>
+                </div>
+               {% else %}
+               <div class="eachchart">
+                    <div class="receiver">
+                        <div class="texts">{{ charts.message }}</div>
+                        <div class="charttime">{{charts.received_on.strftime('%d,%b,%Y %H:%M')}}</div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         <div class="chartform">
             <form action="/sendchart" method="post">
               <input type="text" name="messages" oninput="validate()" autocomplete="off" id="messages" placeholder="Type your message here">
@@ -37,7 +65,14 @@
     <div class="recentcharts">
         <h3>Recent Charts</h3>
         <div class="some_chats">
-            
+            {% for chart in current_chats %}
+            <div class="contac_block">
+                <div class="details">
+                <div class="names">Name: {{ chart.message_from}}</div>
+                <div class="number">Message: {{ chart.message }}</div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

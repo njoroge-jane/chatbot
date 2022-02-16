@@ -1,11 +1,11 @@
 from app import create_app
 from app import db
 from flask_script import Manager,Server
-from app.models import user,pin,chat
+from app.models import registration,pin,chat, contacts
 from  flask_migrate import Migrate, MigrateCommand
 
 # Creating app instance
-app = create_app('production')
+app = create_app('development')
 
 
 manager = Manager(app)
@@ -22,10 +22,8 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 @manager.shell
 def make_shell_context():
-    return dict(app = app,db = db,user = user,pin=pin,chat=chat)
+    return dict(app = app,db = db,registration = registration,pin=pin,chat=chat, contacts = contacts)
 
-# if __name__ == '__main__':
-#     manager.run()
 
 if __name__ == '__main__':
     app.run()    
