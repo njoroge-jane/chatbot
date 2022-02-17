@@ -38,6 +38,6 @@ class pin(db.Model):
 class contacts(db.Model):
 
    id = db.Column(db.Integer,primary_key=True)
-   saved_by = db.Column(db.ForeignKey('current_user.id'))
+   saved_by = db.Column(db.ForeignKey('user.id'))
    username = db.Column(db.String(255))
    contact = db.Column(db.String(100))

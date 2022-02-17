@@ -28,5 +28,5 @@ def make_shell_context():
     #manager.run()
 
 if __name__ == '__main__':
-    manager.run()
-    #app.run()    
+    #manager.run()
+    app.run()    

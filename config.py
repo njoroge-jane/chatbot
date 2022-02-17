@@ -5,7 +5,7 @@ class Config:
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Access@localhost/chatapp'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Sereniel@localhost/chatapp'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587

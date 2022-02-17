@@ -4,12 +4,19 @@ from ..models import user
 from .. import db, photos
 from flask_login import login_required
 from ..models import user,chat,pin
-from .forms import ContactForm
+from .forms import ContactForm, PinForm
 
 
 @main.route('/')
 def index():
 
-    form = ContactForm()
+  contact_form = ContactForm()
 
-    return render_template('new-contact.html', contact_form=form)
+  return render_template('new-contact.html', contact_form=contact_form)
+
+@main.route('/pin')
+def new_pin():
+
+  pin_form = PinForm()
+
+  return render_template('contact-pin.html', pin_form=pin_form)
