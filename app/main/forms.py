@@ -4,8 +4,8 @@ from wtforms.validators import InputRequired
 
 class ContactForm(FlaskForm):
 
-    new_contact = StringField('Contact',validators=[InputRequired()])
-    new_name = StringField('Name',validators=[InputRequired()])
+    contact = StringField('Contact',validators=[InputRequired()])
+    username = StringField('Name',validators=[InputRequired()])
     submit = SubmitField('Save')
 
 class PinForm(FlaskForm):
