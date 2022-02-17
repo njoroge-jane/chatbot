@@ -34,7 +34,7 @@ class pin(db.Model):
    id = db.Column(db.Integer,primary_key=True) 
    user_pin = db.Column(db.ForeignKey('user.id'))
    chat_pin = db.Column(db.Integer)
-   
+
 class contacts(db.Model):
    __tablename__= 'contact'
 
