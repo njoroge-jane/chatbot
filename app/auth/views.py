@@ -36,3 +36,5 @@ def login():
             flash('Invalid login details')
     title = "ChatBot login"
     return render_template('auth/login.html', login_form=login_form, title=title)
+
+

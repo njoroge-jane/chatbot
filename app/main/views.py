@@ -103,8 +103,23 @@ def contact():
 
 
 @main.route('/pin', methods = ['GET','POST'])
-def pin():
+def setpin():
 
   pin_form = PinForm()
+  
+  if pin_form.validate_on_submit():
+
+    first_pin = pin_form.new_pin.data
+    second_pin = pin_form.confirm_pin.data
+
+    get_pin = pin.query.filter_by(user_pin=current_user.id, chat_pin=second_pin).first()
+    if get_pin:
+      flash('The pin already exists')
+      return redirect(request.referrer)
+    else:
+      new_pin=pin(user_pin=current_user.id, chat_pin=second_pin)
+      db.session.add(new_pin)
+      db.session.commit()
+      return redirect(url_for('main.index'))
 
   return render_template('pin.html', pin_form=pin_form)
