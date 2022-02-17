@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort, flash, make_response
 from . import main
-from .forms import ContactForm
+from .forms import ContactForm,PinForm
 from .. import db, photos
 from flask_login import login_required, current_user
 from ..models import registration,chat,pin,contacts
@@ -56,10 +56,10 @@ def recepient(id):
 #   title = "Contact Form - Save Contact"
 #   return render_template('contact.html', title = title)
 
-@main.route('/pin')
-def pin():
-  title = "Pin Form - Save Pin"
-  return render_template('pin.html', title = title)
+# @main.route('/pin')
+# def pin():
+#   title = "Pin Form - Save Pin"
+#   return render_template('pin.html', title = title)
 
 # @main.route('/addcontact', methods = ['POST', 'GET'])
 # def addcontact():
@@ -80,23 +80,31 @@ def pin():
 
 @main.route('/contact', methods = ['GET','POST'])
 def contact():
+    addedby = current_user.contact
+    contact_form = ContactForm()
+    get_contact = contacts.query.filter(contacts.added_by == addedby , contacts.contact == contact_form.contact.data).first()
+    if get_contact:
+      flash('Contact Already exists!')
 
-  contact_form = ContactForm()
-  get_contact = contacts.query.filter_by(contact=contact_form.contact.data).first()
-  if get_contact:
-    flash('Contact Already exists!')
+    else:
 
-  else:
+      if contact_form.validate_on_submit():
+        contact = contacts(added_by = addedby,username=contact_form.username.data, contact=contact_form.contact.data)
+        
+        db.session.add(contact)
+        db.session.commit()
 
-    if contact_form.validate_on_submit():
-      addedby = current_user.contact
-      contact = contacts(added_by = addedby,username=contact_form.username.data, contact=contact_form.contact.data)
-      
-      db.session.add(contact)
-      db.session.commit()
-
-      flash('Contact successfully saved!')
+        flash('Contact successfully saved!')
+        return redirect(url_for('main.index'))
 
     
 
-  return render_template('contact.html', contact_form=contact_form)
+    return render_template('contact.html', contact_form=contact_form)
+
+
+@main.route('/pin', methods = ['GET','POST'])
+def pin():
+
+  pin_form = PinForm()
+
+  return render_template('pin.html', pin_form=pin_form)

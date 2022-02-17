@@ -2,11 +2,12 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {%block content%}
+   <div class="allcontacts" style="width: 50%; margin: auto; margin-top: 15%;">
     <div class="container">
-        <div class="col-md-3">
+        <div class="col-md-8">
             {{ wtf.quick_form(contact_form) }}
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
             <!--Flash message -->
             {% for message in get_flashed_messages() %}
             <div class="alert alert-success">
@@ -16,5 +17,6 @@
             {%endfor%}
         </div>    
     </div>
+   </div>
         
 {%endblock%}
