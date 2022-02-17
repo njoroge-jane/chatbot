@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort, flash, make_response
 from . import main
+from .forms import ContactForm
 from .. import db, photos
 from flask_login import login_required, current_user
 from ..models import registration,chat,pin,contacts
@@ -50,38 +51,52 @@ def recepient(id):
   return resp
 
 
-@main.route('/contact')
-def contact():
-  title = "Contact Form - Save Contact"
-  return render_template('contact.html', title = title)
+# @main.route('/contact')
+# def contact():
+#   title = "Contact Form - Save Contact"
+#   return render_template('contact.html', title = title)
 
 @main.route('/pin')
 def pin():
   title = "Pin Form - Save Pin"
   return render_template('pin.html', title = title)
 
-@main.route('/addcontact', methods = ['POST', 'GET'])
-def addcontact():
-  if request.method == 'POST':
-    username = request.form['contactname']
-    contact = str(request.form['contactnumber'])
-    saveby = current_user.contact
-    get_contact = contacts.query.filter_by(added_by = saveby, contact = contact).first()
-    if get_contact:
-       flash("user with this contact already exist")
-       return redirect(request.referrer)
-    else:
-       new_contact = contacts(added_by = saveby,username = username,contact = contact)
-       db.session.add(new_contact)
-       db.session.commit()
-       return redirect(url_for('main.index'))
+# @main.route('/addcontact', methods = ['POST', 'GET'])
+# def addcontact():
+#   if request.method == 'POST':
+#     username = request.form['contactname']
+#     contact = str(request.form['contactnumber'])
+#     saveby = current_user.contact
+#     get_contact = contacts.query.filter_by(added_by = saveby, contact = contact).first()
+#     if get_contact:
+#        flash("user with this contact already exist")
+#        return redirect(request.referrer)
+#     else:
+#        new_contact = contacts(added_by = saveby,username = username,contact = contact)
+#        db.session.add(new_contact)
+#        db.session.commit()
+#        return redirect(url_for('main.index'))
 
 
-# @main.route('/addcontacts')
-# def addcontacts():
-#   username = "Test"
-#   contact = "0705287224"
-#   addcont  = registration(contact = contact,username = username)
-#   db.session.add(addcont)
-#   db.session.commit()
-#   return redirect(request.referrer)
+@main.route('/contact', methods = ['GET','POST'])
+def contact():
+
+  contact_form = ContactForm()
+  get_contact = contacts.query.filter_by(contact=contact_form.contact.data).first()
+  if get_contact:
+    flash('Contact Already exists!')
+
+  else:
+
+    if contact_form.validate_on_submit():
+      addedby = current_user.contact
+      contact = contacts(added_by = addedby,username=contact_form.username.data, contact=contact_form.contact.data)
+      
+      db.session.add(contact)
+      db.session.commit()
+
+      flash('Contact successfully saved!')
+
+    
+
+  return render_template('contact.html', contact_form=contact_form)

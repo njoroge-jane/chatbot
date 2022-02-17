@@ -193,6 +193,19 @@ ul li a{
 .userpref{
     padding-top: 3px;
 }
+.contac_block{
+    background-color: #dff6f8;
+    padding: 9px;
+}
+.some_contacts{
+    height: 370px;
+    overflow: hidden;
+}
+.some_chats{
+    height: 370px;
+    overflow: hidden;
+    padding: 10px;
+}
 @media screen and (max-width:600px){
     .recentcharts{
         display: none;

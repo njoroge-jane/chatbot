@@ -23,7 +23,7 @@
         <div class="some_contacts">
             {% for contact in get_contact %}
                <a href="/recepient/{{ contact.id }}">
-                    <div class="contac_block">
+                    <div class="contac_block" id="contac_block">
                         <div class="roundimage"><div class="icons">{{ contact.username[0] }}</div></div>
                         <div class="details">
                         <div class="names">Name: {{ contact.username }}</div>
