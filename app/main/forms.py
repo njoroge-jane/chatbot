@@ -6,7 +6,9 @@ class ContactForm(FlaskForm):
 
     new_contact = StringField('Contact',validators=[InputRequired()])
     new_name = StringField('Name',validators=[InputRequired()])
+    submit = SubmitField('Save')
 
 class PinForm(FlaskForm):
     new_pin = StringField('New Pin')
     encrypt_pin = StringField('Encrypt Pin')
+    submit = SubmitField('Submit')

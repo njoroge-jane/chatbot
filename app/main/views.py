@@ -7,15 +7,15 @@ from ..models import user,chat,pin
 from .forms import ContactForm, PinForm
 
 
-@main.route('/')
+@main.route('/index', methods = ['GET','POST'])
 def index():
 
   contact_form = ContactForm()
 
   return render_template('new-contact.html', contact_form=contact_form)
 
-@main.route('/pin')
-def new_pin():
+@main.route('/', methods = ['GET','POST'])
+def pin():
 
   pin_form = PinForm()
 

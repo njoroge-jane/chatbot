@@ -36,6 +36,7 @@ class pin(db.Model):
    chat_pin = db.Column(db.Integer)
    
 class contacts(db.Model):
+   __tablename__= 'contact'
 
    id = db.Column(db.Integer,primary_key=True)
    saved_by = db.Column(db.ForeignKey('user.id'))
