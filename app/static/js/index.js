@@ -26,3 +26,16 @@ const opentab = () =>{
     document.getElementById("open").style.display = "none";
     document.getElementById("close").style.display = "block";
 }
+
+const ValidateSignups = () =>{
+    var username = document.getElementById("saveusername").value.trim();
+    var contact = document.getElementById("savecontact").value.trim();
+
+    if(username === "" || contact === ""){
+       if(username === ""){
+           return false;
+       }else{
+           return false;
+       }
+    }
+}

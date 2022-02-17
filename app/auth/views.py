@@ -8,24 +8,20 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 @auth.route('/register', methods=["GET", "POST"])
 def register():
-    form = RegistrationForm()
-    get_user = registration.query.filter_by(contact=form.contact.data).first()
-    if get_user:
-        flash("User already exists")
-
-    else:
-
-        if form.validate_on_submit():
-            user = registration(username=form.username.data,
-                         contact=form.contact.data)
-            db.session.add(user)
+    if request.method == 'POST':
+        username = request.form['saveusername']
+        savecontact = request.form['savecontact']
+        check_user = registration.query.filter_by(contact = savecontact , username = username).first()
+        if check_user:
+            flash("User with this username already exist")
+            return redirect(request.referrer)
+        else:
+            new_user = registration(contact = savecontact ,username = username)
+            db.session.add(new_user)
             db.session.commit()
-
-            flash('Account has been created successfully')
-
             return redirect(url_for('auth.login'))
 
-    return render_template('auth/register.html', registration_form = form)
+    return render_template('auth/register.html')
 
 
 @auth.route('/login', methods=['GET', 'POST'])

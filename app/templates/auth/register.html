@@ -1,18 +1,26 @@
-{%extends 'base.html'%} {% import "bootstrap/wtf.html" as wtf %} {%block
-content%} {{ super() }}
-<div class="container">
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
+{%extends 'base.html'%} {% import "bootstrap/wtf.html" as wtf %} 
+{%block content%} {{ super() }}
+
+<div class="signups" id="signups" style="margin-top: 10%;">
+  <h3 style="text-align: center; color: #8181CF;">Sign-Up</h3>
+  <form action="/auth/register" method="post">
+    <div class="flashmessage" style="color: red; text-align: center;">
       {% for message in get_flashed_messages() %}
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert"></button>
-        {{ message }}
-        <h4 class="text-center mt-3 text-primary">Create Account</h4>
-        {{wtf.quick_form(registration_form)}}
-      </div>
+         {{ message }}
       {% endfor %}
     </div>
-  </div>
+     <div class="form-group">
+       <input type="text" name="saveusername" autocomplete="off" id="saveusername" placeholder="Enter username">
+     </div>
+     <div class="form-group">
+      <input type="text" name="savecontact" autocomplete="off" id="savecontact" placeholder="Enter contact">
+    </div>
+    <div class="form-group" style="margin-top: 10px;">
+      <a href="{{url_for('auth.login')}}">Have account?</a>
+    </div>
+    <div class="form-group">
+      <input type="submit" id="registerbtn" value="Sign-In" class="btn" onclick="return ValidateSignups()">
+    </div>
+  </form>
 </div>
 {%endblock%}
